@@ -1,0 +1,11 @@
+Package: com.jontelang.bigshotsnapper3plugin
+Name: BigShot Snapper 3 plugin
+Depends: mobilesubstrate, firmware(>=14.0), preferenceloader
+Conflicts: com.jontelang.snapper
+Description: BigShot for Snapper 3
+Maintainer: Jonathan Winger-lang
+Author: Jonathan Winger-lang
+Section: Tweaks
+Architecture: iphoneos-arm64
+Version: 1.0-1+debug
+Installed-Size: 412
