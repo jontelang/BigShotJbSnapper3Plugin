@@ -1,5 +1,7 @@
-TARGET := iphone:clang:latest:7.0
+TARGET = iphone:clang:15.0:15.0 # platform:compiler:sdk_version:deployment_version
 INSTALL_TARGET_PROCESSES = SpringBoard
+SDKVERSION = 13.7
+SYSROOT = $(THEOS)/sdks/iPhoneOS13.7.sdk
 
 include $(THEOS)/makefiles/common.mk
 

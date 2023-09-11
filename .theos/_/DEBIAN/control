@@ -6,6 +6,6 @@ Description: BigShot for Snapper 3
 Maintainer: Jonathan Winger-lang
 Author: Jonathan Winger-lang
 Section: Tweaks
-Architecture: iphoneos-arm64
-Version: 1.0-1+debug
-Installed-Size: 412
+Architecture: iphoneos-arm
+Version: 1.0
+Installed-Size: 400
