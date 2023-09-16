@@ -2,7 +2,7 @@ Package: com.jontelang.bigshotsnapper3plugin
 Name: BigShot for Snapper 3 and CCSupport
 Depends: mobilesubstrate, firmware(>=14.0), preferenceloader
 Conflicts: com.jontelang.snapper
-Version: 1.0
+Version: 1.1
 Architecture: iphoneos-arm
 Description: BigShot for iOS 15/16 (and Snapper 3)
 Maintainer: Jonathan Winger-lang
