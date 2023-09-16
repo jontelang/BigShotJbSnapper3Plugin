@@ -2,7 +2,7 @@ DEBUG=0
 THEOS_PACKAGE_SCHEME=rootless
 THEOS_DEVICE_USER=mobile
 THEOS=/Users/jontelang/theos
-THEOS_DEVICE_IP=192.168.1.33
+THEOS_DEVICE_IP=192.168.1.29
 THEOS_DEVICE_PORT=22
 FINALPACKAGE=1
 MESSAGES=0
@@ -37,4 +37,6 @@ BigShotSnapper3Plugin_CFLAGS = -fobjc-arc
 include $(THEOS_MAKE_PATH)/tweak.mk
 
 SUBPROJECTS += bigshotjbsnapper3plugin
+SUBPROJECTS += ccsupportplugin
+
 include $(THEOS_MAKE_PATH)/aggregate.mk

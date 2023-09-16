@@ -126,7 +126,24 @@ static inline void initializeTweak(CFNotificationCenterRef center, void *observe
     });
 }
 
-
+static inline void kickOff(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
+    NSLog(@"[Snapper3] [IL2] [bigshot] internal_doActionBarAction");
+    // [controller.messagingDelegate displayMessage:@"Taking BigShot, please wait"];
+    // messagingDelegate = controller.messagingDelegate;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        SpringBoard* sb = (SpringBoard*)[UIApplication sharedApplication];
+        NSLog(@"[bigshot] sb: %@", sb);
+        if ([sb respondsToSelector:@selector(_accessibilityFrontMostApplication)]) {
+         SBApplication *front = (SBApplication*)[sb _accessibilityFrontMostApplication];
+         if(front) {
+            NSLog(@"[bigshot] front: %@", front);
+            NSDictionary *original = @{ @"bundle" : front.bundleIdentifier };
+            CFDictionaryRef dict = (__bridge CFDictionaryRef)original;
+            CFNotificationCenterPostNotification(CFNotificationCenterGetDistributedCenter(), CFSTR("com.jontelang.snapper3.pluginto"), NULL, dict, YES);
+          }
+        }
+    });
+}
 
 %ctor {
     NSLog(@"[instalauncher2] ctor");
@@ -143,6 +160,16 @@ static inline void initializeTweak(CFNotificationCenterRef center, void *observe
                             NULL, 
                             (CFNotificationCallback)listenForSaveImage, 
                             CFSTR("com.jontelang.snapper3.listenforsavableimage"), 
+                            NULL, 
+                            CFNotificationSuspensionBehaviorCoalesce);
+
+    
+    // Non-snapper3 users
+    CFNotificationCenterAddObserver(
+                            CFNotificationCenterGetDistributedCenter(), 
+                            NULL, 
+                            (CFNotificationCallback)kickOff, 
+                            CFSTR("com.jontelang.bigshot.go"), 
                             NULL, 
                             CFNotificationSuspensionBehaviorCoalesce);
 }
